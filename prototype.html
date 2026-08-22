@@ -1,0 +1,588 @@
+<title>Kshitij Pathak — ask my résumé</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root {
+    /* cool ink world — neutrals biased slightly blue, chosen not inherited */
+    --bg: #0d1016;
+    --bg-raised: #12161e;
+    --surface: #171c26;
+    --surface-2: #1c2230;
+    --border: #262d3a;
+    --border-soft: #1e2530;
+    --text: #e9ecf1;
+    --ivory: #f3efe7;      /* warm — the human voice, in tension with cool ground */
+    --dim: #98a1b0;
+    --faint: #5a6472;
+    --coral: #ff5c42;      /* signal: live / thinking / primary action */
+    --coral-soft: rgba(255, 92, 66, 0.14);
+    --cyan: #52cbe6;       /* signal: machine / tool calls */
+    --cyan-soft: rgba(82, 203, 230, 0.12);
+    --good: #57c78a;
+
+    --font-serif: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+    --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+
+    --maxw: 760px;
+    --r: 12px;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #eef1f5;
+      --bg-raised: #f7f9fb;
+      --surface: #ffffff;
+      --surface-2: #f4f6f9;
+      --border: #d9dfe7;
+      --border-soft: #e6eaf0;
+      --text: #141821;
+      --ivory: #1b1f28;
+      --dim: #55606f;
+      --faint: #8b95a3;
+      --coral: #dc3d22;
+      --coral-soft: rgba(220, 61, 34, 0.1);
+      --cyan: #0d84a3;
+      --cyan-soft: rgba(13, 132, 163, 0.09);
+      --good: #1f9d63;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d1016; --bg-raised: #12161e; --surface: #171c26; --surface-2: #1c2230;
+    --border: #262d3a; --border-soft: #1e2530; --text: #e9ecf1; --ivory: #f3efe7;
+    --dim: #98a1b0; --faint: #5a6472; --coral: #ff5c42; --coral-soft: rgba(255,92,66,0.14);
+    --cyan: #52cbe6; --cyan-soft: rgba(82,203,230,0.12); --good: #57c78a;
+  }
+  :root[data-theme="light"] {
+    --bg: #eef1f5; --bg-raised: #f7f9fb; --surface: #ffffff; --surface-2: #f4f6f9;
+    --border: #d9dfe7; --border-soft: #e6eaf0; --text: #141821; --ivory: #1b1f28;
+    --dim: #55606f; --faint: #8b95a3; --coral: #dc3d22; --coral-soft: rgba(220,61,34,0.1);
+    --cyan: #0d84a3; --cyan-soft: rgba(13,132,163,0.09); --good: #1f9d63;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+
+  /* ── top bar ───────────────────────────── */
+  .bar {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .bar-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 12px 20px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .brand { font-family: var(--font-mono); font-size: 13px; letter-spacing: .02em; color: var(--text); }
+  .brand b { color: var(--coral); font-weight: 700; }
+  .bar-right { display: flex; align-items: center; gap: 14px; }
+  .status { font-family: var(--font-mono); font-size: 11.5px; color: var(--dim); display: flex; align-items: center; gap: 6px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--good); box-shadow: 0 0 0 0 var(--good); animation: pulse 2.4s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--good) 55%, transparent); } 70% { box-shadow: 0 0 0 6px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+  .tbtn {
+    font-family: var(--font-mono); font-size: 12px; color: var(--dim);
+    background: transparent; border: 1px solid var(--border); border-radius: 8px;
+    padding: 5px 9px; cursor: pointer; transition: color .15s, border-color .15s;
+  }
+  .tbtn:hover { color: var(--text); border-color: var(--faint); }
+
+  /* ── hero ──────────────────────────────── */
+  .hero { padding: 60px 0 22px; }
+  .eyebrow { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: .06em; color: var(--faint); margin-bottom: 20px; }
+  .eyebrow .c { color: var(--cyan); }
+  h1 {
+    font-family: var(--font-serif); font-weight: 500; color: var(--ivory);
+    font-size: clamp(2.3rem, 7.2vw, 4rem); line-height: 1.03; letter-spacing: -0.01em;
+    text-wrap: balance; margin: 0 0 18px;
+  }
+  h1 .ask { font-style: italic; color: var(--coral); }
+  .lede { font-size: 1.06rem; color: var(--dim); max-width: 54ch; margin: 0; }
+
+  /* ── console / transcript ──────────────── */
+  .console {
+    margin-top: 34px;
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .console-head {
+    display: flex; align-items: center; gap: 8px;
+    padding: 11px 16px; border-bottom: 1px solid var(--border-soft);
+    font-family: var(--font-mono); font-size: 11.5px; color: var(--faint);
+  }
+  .console-head .lamp { width: 9px; height: 9px; border-radius: 50%; }
+  .lamp.a { background: var(--coral); } .lamp.b { background: #e8b84c; } .lamp.c { background: var(--good); opacity: .8; }
+  .console-head .title { margin-left: 8px; letter-spacing: .03em; }
+  .log { padding: 18px 16px 6px; display: flex; flex-direction: column; gap: 20px; min-height: 220px; }
+
+  .turn { display: flex; flex-direction: column; gap: 9px; animation: rise .35s ease both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  .you { font-family: var(--font-mono); font-size: 13.5px; color: var(--text); display: flex; gap: 8px; align-items: baseline; }
+  .you .caret { color: var(--coral); font-weight: 700; }
+
+  .agent { display: flex; flex-direction: column; gap: 12px; }
+  .agent-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--cyan); }
+
+  /* tool-call card — the machine vernacular */
+  .tool {
+    align-self: flex-start; max-width: 100%;
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 2px solid var(--cyan);
+    border-radius: 10px; padding: 10px 13px;
+    font-family: var(--font-mono); font-size: 12.5px; color: var(--dim);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .tool-top { display: flex; align-items: center; gap: 9px; }
+  .tool-name { color: var(--text); }
+  .tool-name .fn { color: var(--cyan); }
+  .tool-state { margin-left: auto; display: flex; align-items: center; gap: 6px; font-size: 11px; }
+  .spin { width: 9px; height: 9px; border: 1.6px solid var(--border); border-top-color: var(--cyan); border-radius: 50%; animation: spin .7s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .tool.done .spin { display: none; }
+  .tool .check { display: none; color: var(--good); }
+  .tool.done .check { display: inline; }
+  .tool-result { color: var(--faint); font-size: 11.5px; }
+
+  .answer { font-family: var(--font-mono); font-size: 14px; line-height: 1.65; color: var(--text); white-space: pre-wrap; }
+  .answer .cursor { display: inline-block; width: 8px; height: 1.05em; vertical-align: -2px; background: var(--coral); margin-left: 1px; animation: blink 1s steps(2) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .answer b { color: var(--ivory); font-weight: 700; }
+
+  /* structured block that resolves after the stream */
+  .block { display: grid; gap: 10px; animation: rise .4s ease both; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border-soft); border-radius: 10px;
+    padding: 13px 15px;
+  }
+  .card h4 { margin: 0 0 3px; font-family: var(--font-sans); font-size: 14.5px; color: var(--text); font-weight: 650; }
+  .card p { margin: 0 0 8px; font-size: 13.5px; color: var(--dim); line-height: 1.5; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-family: var(--font-mono); font-size: 11px; color: var(--dim); background: var(--surface-2); border: 1px solid var(--border-soft); border-radius: 999px; padding: 2px 9px; }
+  .kv { display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; font-size: 13.5px; }
+  .kv dt { font-family: var(--font-mono); font-size: 12px; color: var(--faint); }
+  .kv dd { margin: 0; color: var(--text); }
+
+  /* ── input + chips ─────────────────────── */
+  .composer { padding: 12px 16px 16px; border-top: 1px solid var(--border-soft); background: var(--bg-raised); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .chip {
+    font-family: var(--font-mono); font-size: 12.5px; color: var(--dim);
+    background: var(--surface); border: 1px solid var(--border); border-radius: 999px;
+    padding: 6px 12px; cursor: pointer; transition: all .15s;
+  }
+  .chip:hover { color: var(--text); border-color: var(--cyan); background: var(--cyan-soft); }
+  .inputrow { display: flex; gap: 8px; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 11px; padding: 4px 4px 4px 14px; }
+  .inputrow:focus-within { border-color: var(--coral); }
+  .inputrow .pre { color: var(--coral); font-family: var(--font-mono); font-weight: 700; }
+  input.q { flex: 1; background: transparent; border: 0; outline: 0; color: var(--text); font-family: var(--font-mono); font-size: 14px; padding: 8px 0; }
+  input.q::placeholder { color: var(--faint); }
+  .send { border: 0; background: var(--coral); color: #fff; font-family: var(--font-mono); font-size: 13px; font-weight: 600; padding: 9px 15px; border-radius: 9px; cursor: pointer; transition: filter .15s; }
+  .send:hover { filter: brightness(1.08); }
+
+  /* ── skimmable fallback ────────────────── */
+  .fallback-toggle { text-align: center; padding: 30px 0 8px; }
+  .fallback-toggle button {
+    font-family: var(--font-mono); font-size: 12.5px; color: var(--dim);
+    background: transparent; border: 1px solid var(--border); border-radius: 999px;
+    padding: 8px 16px; cursor: pointer; transition: all .15s;
+  }
+  .fallback-toggle button:hover { color: var(--text); border-color: var(--faint); }
+  .sheet { display: none; padding: 8px 0 40px; }
+  .sheet.open { display: block; animation: rise .4s ease both; }
+  .sec { padding: 26px 0; border-top: 1px solid var(--border-soft); }
+  .sec:first-child { border-top: 0; }
+  .sec h3 { font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--cyan); margin: 0 0 14px; }
+  .sec h2 { font-family: var(--font-serif); font-weight: 500; color: var(--ivory); font-size: 1.5rem; margin: 0 0 8px; }
+  .sec p { color: var(--dim); margin: 0 0 10px; max-width: 62ch; }
+  .grid2 { display: grid; gap: 12px; }
+  @media (min-width: 620px) { .grid2 { grid-template-columns: 1fr 1fr; } }
+  .job { display: flex; flex-direction: column; gap: 3px; margin-bottom: 16px; }
+  .job .role { color: var(--text); font-weight: 600; }
+  .job .meta { font-family: var(--font-mono); font-size: 12.5px; color: var(--faint); }
+
+  /* ── footer dock ───────────────────────── */
+  footer { border-top: 1px solid var(--border-soft); padding: 28px 0 40px; }
+  .dock { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center; }
+  .dock a {
+    font-family: var(--font-mono); font-size: 13px; color: var(--dim); text-decoration: none;
+    border: 1px solid var(--border); border-radius: 10px; padding: 9px 14px; transition: all .15s;
+  }
+  .dock a:hover { color: var(--text); border-color: var(--coral); background: var(--coral-soft); }
+  .dock a.primary { color: #fff; background: var(--coral); border-color: var(--coral); }
+  .dock a.primary:hover { filter: brightness(1.08); }
+  .fineprint { text-align: center; font-family: var(--font-mono); font-size: 11px; color: var(--faint); margin-top: 22px; }
+
+  a { color: var(--coral); }
+  :focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; border-radius: 4px; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%) translateY(20px);
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+    font-family: var(--font-mono); font-size: 12.5px; padding: 10px 16px; border-radius: 10px;
+    opacity: 0; pointer-events: none; transition: all .3s; z-index: 40;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: .001s !important; transition-duration: .001s !important; }
+    .dot, .spin, .cursor { animation: none !important; }
+  }
+</style>
+
+<div class="bar">
+  <div class="bar-inner">
+    <span class="brand"><b>kshitij</b>.pathak · agent</span>
+    <span class="bar-right">
+      <span class="status"><span class="dot"></span>agent ready</span>
+      <button class="tbtn" id="theme" aria-label="Toggle theme">◐ theme</button>
+    </span>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow"><span class="c">//</span> agentic &amp; genai developer · kpmg · manipal university jaipur</div>
+    <h1>Don't read my résumé.<br /><span class="ask">Ask</span> it.</h1>
+    <p class="lede">I build AI agents for a living — so my portfolio is one. Ask a question, or tap a prompt, and watch it work.</p>
+  </section>
+
+  <section class="console" aria-label="Portfolio agent">
+    <div class="console-head">
+      <span class="lamp a"></span><span class="lamp b"></span><span class="lamp c"></span>
+      <span class="title">kshitij-agent · session</span>
+    </div>
+    <div class="log" id="log"></div>
+    <div class="composer">
+      <div class="chips" id="chips">
+        <button class="chip" data-intent="projects">What has he built?</button>
+        <button class="chip" data-intent="experience">His KPMG work</button>
+        <button class="chip" data-intent="fit">Is he a fit for an AI eng role?</button>
+        <button class="chip" data-intent="skills">Tech stack</button>
+        <button class="chip" data-intent="resume">Download résumé</button>
+      </div>
+      <form class="inputrow" id="form">
+        <span class="pre">›</span>
+        <input class="q" id="q" autocomplete="off" placeholder="ask anything about Kshitij…" aria-label="Ask the agent" />
+        <button class="send" type="submit">send</button>
+      </form>
+    </div>
+  </section>
+
+  <div class="fallback-toggle">
+    <button id="showAll">↓ or just show me everything</button>
+  </div>
+
+  <div class="sheet" id="sheet">
+    <section class="sec">
+      <h3>whoami</h3>
+      <h2>Kshitij Pathak</h2>
+      <p>Agentic &amp; GenAI developer at KPMG, currently studying at Manipal University Jaipur. I spend my time building AI systems that actually <em>do</em> things — multi-step agents, retrieval pipelines, and document-intelligence tools — and I care about the craft of getting them reliable, not just demo-able.</p>
+    </section>
+
+    <section class="sec">
+      <h3>experience</h3>
+      <div class="job">
+        <span class="role">Agentic &amp; GenAI Developer — KPMG</span>
+        <span class="meta">present</span>
+        <p>Building production agentic and GenAI systems: tool-using agents over internal workflows, and LLM pipelines for document understanding.</p>
+      </div>
+      <div class="job">
+        <span class="role">Intern — KPMG</span>
+        <span class="meta">prior</span>
+        <p>Prototyped GenAI features and shipped them into the team's workflow.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h3>projects</h3>
+      <div class="grid2">
+        <div class="card"><h4>Agent Orchestrator</h4><p>Multi-agent workflow that plans and executes tasks across internal systems via tool-calling.</p><div class="tags"><span class="tag">python</span><span class="tag">agents</span><span class="tag">tool-use</span></div></div>
+        <div class="card"><h4>RAG Knowledge Copilot</h4><p>Retrieval assistant that answers from enterprise docs with grounded citations.</p><div class="tags"><span class="tag">rag</span><span class="tag">embeddings</span><span class="tag">vector db</span></div></div>
+        <div class="card"><h4>Doc Intelligence Pipeline</h4><p>GenAI extraction that turns messy financial documents into structured data.</p><div class="tags"><span class="tag">genai</span><span class="tag">ocr</span><span class="tag">python</span></div></div>
+        <div class="card"><h4>This portfolio</h4><p>An on-page agent that answers questions about me, with live tool calls — the site you're on.</p><div class="tags"><span class="tag">next.js</span><span class="tag">claude</span><span class="tag">streaming</span></div></div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h3>skills</h3>
+      <div class="grid2">
+        <div class="card"><h4>LLMs &amp; Agents</h4><p>Agent frameworks, tool-use, RAG, prompt &amp; context engineering, evals.</p></div>
+        <div class="card"><h4>Languages</h4><p>Python, TypeScript, SQL.</p></div>
+        <div class="card"><h4>Platforms</h4><p>Cloud, vector databases, REST APIs.</p></div>
+        <div class="card"><h4>Foundations</h4><p>Data structures &amp; algorithms, applied ML.</p></div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h3>how i build</h3>
+      <p>· Reliability over demos — an agent that works 9 times out of 10 isn't done.</p>
+      <p>· Ship the deterministic version first; reach for the model only where judgment is needed.</p>
+      <p>· Learn fast, then make it legible to the next person who reads the code.</p>
+    </section>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="dock">
+      <a class="primary" href="#" data-resume>Résumé ↓</a>
+      <a href="mailto:kshitijpathak0212@gmail.com">Email</a>
+      <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#" target="_blank" rel="noopener">GitHub</a>
+      <a href="#" target="_blank" rel="noopener">X</a>
+    </div>
+    <div class="fineprint">prototype · content is placeholder — swap in your real projects &amp; links</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var log = document.getElementById('log');
+
+  // ── deterministic "agent" knowledge base ──
+  var KB = {
+    projects: {
+      q: 'What has Kshitij built?',
+      tool: { name: 'get_projects', arg: '', result: '4 records · agentic, genai, rag' },
+      intro: "He's shipped a handful of agentic & GenAI systems — here are the ones worth showing:",
+      block: [
+        { h: 'Agent Orchestrator', p: 'Multi-agent workflow that plans and executes tasks across internal systems via tool-calling.', t: ['python', 'agents', 'tool-use'] },
+        { h: 'RAG Knowledge Copilot', p: 'Retrieval assistant answering from enterprise docs with grounded citations.', t: ['rag', 'embeddings', 'vector db'] },
+        { h: 'Doc Intelligence Pipeline', p: 'GenAI extraction turning messy financial documents into structured data.', t: ['genai', 'ocr', 'python'] }
+      ]
+    },
+    experience: {
+      q: 'Show his KPMG work.',
+      tool: { name: 'get_experience', arg: '', result: '2 roles · current + internship' },
+      intro: "Currently at KPMG, where he moved from intern to building production AI:",
+      kv: [
+        ['now', 'Agentic & GenAI Developer, KPMG — tool-using agents + LLM document pipelines'],
+        ['prior', 'Intern, KPMG — prototyped and shipped GenAI features'],
+        ['study', 'B.Tech, Manipal University Jaipur']
+      ]
+    },
+    skills: {
+      q: 'What is his tech stack?',
+      tool: { name: 'get_skills', arg: 'grouped', result: '4 groups' },
+      intro: "The short version:",
+      block: [
+        { h: 'LLMs & Agents', p: 'Agent frameworks, tool-use, RAG, prompt & context engineering, evals.', t: [] },
+        { h: 'Languages', p: 'Python, TypeScript, SQL.', t: [] },
+        { h: 'Platforms', p: 'Cloud, vector databases, REST APIs.', t: [] }
+      ]
+    },
+    fit: {
+      q: 'Is he a fit for an AI engineering role?',
+      tool: { name: 'match_role', arg: '"AI Engineer"', result: 'strong match' },
+      intro: "Short answer: yes. He already builds agentic and GenAI systems in production at KPMG — tool-using agents, RAG, and document-intelligence pipelines — with the reliability mindset the role needs. He learns fast and ships. The résumé and projects below back it up."
+    },
+    resume: {
+      q: 'Download his résumé.',
+      tool: { name: 'open_resume', arg: 'pdf', result: 'ready' },
+      intro: "Here you go — the résumé button is in the dock at the bottom of the page. (In the real build this links to a PDF.)",
+      cta: 'resume'
+    },
+    about: {
+      q: 'Who is Kshitij?',
+      tool: { name: 'whoami', arg: '', result: 'ok' },
+      intro: "Kshitij Pathak — an agentic & GenAI developer at KPMG and a student at Manipal University Jaipur. He builds AI that actually does things, and cares about making it reliable, not just impressive in a demo."
+    },
+    contact: {
+      q: 'How do I reach him?',
+      tool: { name: 'get_contact', arg: '', result: '4 channels' },
+      intro: "Fastest is email — kshitijpathak0212@gmail.com. LinkedIn, GitHub and X are in the dock below."
+    },
+    fallback: {
+      tool: { name: 'search', arg: '', result: 'no exact match' },
+      intro: "I only answer questions about Kshitij in this prototype — try one of the suggested prompts, like his projects, his KPMG experience, or whether he fits an AI engineering role."
+    }
+  };
+
+  function intentFrom(text) {
+    var t = (text || '').toLowerCase();
+    if (/résumé|resume|cv|pdf|download/.test(t)) return 'resume';
+    if (/fit|role|hire|hiring|good|suit|match|why (should|hire)/.test(t)) return 'fit';
+    if (/project|built|build|made|work on|shipped|portfolio/.test(t)) return 'projects';
+    if (/kpmg|experience|job|intern|where|company|worked/.test(t)) return 'experience';
+    if (/skill|stack|tech|language|tool|framework|know/.test(t)) return 'skills';
+    if (/contact|reach|email|linkedin|github|connect|hire me|message/.test(t)) return 'contact';
+    if (/who|about|yourself|tell me|bio|kshitij/.test(t)) return 'about';
+    return 'fallback';
+  }
+
+  function el(tag, cls, html) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (html != null) e.innerHTML = html;
+    return e;
+  }
+
+  function typeInto(node, text) {
+    return new Promise(function (resolve) {
+      if (reduce) { node.textContent = text; resolve(); return; }
+      var cursor = el('span', 'cursor');
+      node.appendChild(cursor);
+      var i = 0;
+      function step() {
+        i += Math.max(1, Math.round(text.length / 90));
+        node.textContent = text.slice(0, i);
+        node.appendChild(cursor);
+        log.scrollTop = log.scrollHeight;
+        if (i < text.length) { setTimeout(step, 16); }
+        else { cursor.remove(); resolve(); }
+      }
+      step();
+    });
+  }
+
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, reduce ? 0 : ms); }); }
+
+  var busy = false;
+  function run(intentKey) {
+    if (busy) return Promise.resolve();
+    busy = true;
+    var data = KB[intentKey] || KB.fallback;
+
+    var turn = el('div', 'turn');
+    // user line
+    var you = el('div', 'you', '<span class="caret">›</span><span></span>');
+    you.lastChild.textContent = data.q || document.getElementById('q').value || '…';
+    turn.appendChild(you);
+
+    var agent = el('div', 'agent');
+    agent.appendChild(el('div', 'agent-label', 'kshitij-agent'));
+    turn.appendChild(agent);
+    log.appendChild(turn);
+    log.scrollTop = log.scrollHeight;
+
+    var chain = wait(280);
+
+    // tool card
+    if (data.tool) {
+      var tool = el('div', 'tool');
+      tool.innerHTML =
+        '<div class="tool-top"><span class="tool-name"><span class="fn">' + data.tool.name + '</span>(' + (data.tool.arg || '') + ')</span>' +
+        '<span class="tool-state"><span class="spin"></span><span class="check">✓ done</span></span></div>' +
+        '<div class="tool-result" style="display:none"></div>';
+      agent.appendChild(tool);
+      chain = chain.then(function () {
+        log.scrollTop = log.scrollHeight;
+        return wait(620);
+      }).then(function () {
+        tool.classList.add('done');
+        var res = tool.querySelector('.tool-result');
+        res.textContent = '→ ' + data.tool.result;
+        res.style.display = 'block';
+        return wait(260);
+      });
+    }
+
+    // streamed answer
+    chain = chain.then(function () {
+      var ans = el('div', 'answer');
+      agent.appendChild(ans);
+      return typeInto(ans, data.intro || '');
+    });
+
+    // structured block
+    if (data.block) {
+      chain = chain.then(function () {
+        var b = el('div', 'block');
+        data.block.forEach(function (c) {
+          var card = el('div', 'card');
+          card.appendChild(el('h4', null, c.h));
+          card.appendChild(el('p', null, c.p));
+          if (c.t && c.t.length) {
+            var tags = el('div', 'tags');
+            c.t.forEach(function (x) { tags.appendChild(el('span', 'tag', x)); });
+            card.appendChild(tags);
+          }
+          b.appendChild(card);
+        });
+        agent.appendChild(b);
+        log.scrollTop = log.scrollHeight;
+      });
+    }
+    if (data.kv) {
+      chain = chain.then(function () {
+        var dl = el('dl', 'kv');
+        data.kv.forEach(function (row) {
+          dl.appendChild(el('dt', null, row[0]));
+          dl.appendChild(el('dd', null, row[1]));
+        });
+        agent.appendChild(dl);
+        log.scrollTop = log.scrollHeight;
+      });
+    }
+    if (data.cta === 'resume') {
+      chain = chain.then(function () { flashDock(); });
+    }
+
+    return chain.then(function () { busy = false; log.scrollTop = log.scrollHeight; });
+  }
+
+  // ── wiring ──
+  document.getElementById('chips').addEventListener('click', function (e) {
+    var b = e.target.closest('.chip');
+    if (b) run(b.dataset.intent);
+  });
+  document.getElementById('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var q = document.getElementById('q');
+    var v = q.value.trim();
+    if (!v || busy) return;
+    var key = intentFrom(v);
+    // preserve typed text as the user line
+    KB._typed = v;
+    var data = KB[key] || KB.fallback;
+    var orig = data.q; data.q = v;
+    run(key).then(function () { data.q = orig; });
+    q.value = '';
+  });
+
+  var sheet = document.getElementById('sheet');
+  document.getElementById('showAll').addEventListener('click', function () {
+    sheet.classList.toggle('open');
+    this.textContent = sheet.classList.contains('open') ? '↑ back to the agent' : '↓ or just show me everything';
+    if (sheet.classList.contains('open')) sheet.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+  });
+
+  // résumé buttons → toast (no real PDF in prototype)
+  function toast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    setTimeout(function () { t.classList.remove('show'); }, 2600);
+  }
+  function flashDock() { toast('résumé lives in the dock ↓  (wire a real PDF in the build)'); }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-resume]'), function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); toast('add your résumé PDF here'); });
+  });
+
+  // theme toggle
+  var root = document.documentElement;
+  document.getElementById('theme').addEventListener('click', function () {
+    var cur = root.getAttribute('data-theme');
+    var next = cur === 'dark' ? 'light' : cur === 'light' ? 'dark'
+      : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'light' : 'dark');
+    root.setAttribute('data-theme', next);
+  });
+
+  // ── autoplay first exchange ──
+  window.addEventListener('load', function () {
+    setTimeout(function () { run('projects'); }, reduce ? 0 : 500);
+  });
+})();
+</script>
